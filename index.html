@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+
+    <link rel="stylesheet" href="./public/build.css">
+    <link rel="stylesheet" href="./src/style.css">
+
+    <script src="lib/jquery@3_5_1.min.js"></script>
+</head>
+<body class="h-screen flex py-20">
+    <div class="mx-auto min-w-1/4 max-w-xs shadow-lg h-max max-h-full" id="container">
+        <div class="flex items-center justify-between p-3 bg-inherit bg-dim text-white" id="header">
+            <h1 class="text-2xl font-bold uppercase">To-do List</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus cursor-pointer" id="add-to-do">
+                <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </div>
+
+        <input type="text" name="To-dos'" id="to-d--input" class="bg-gray-200 p-2 w-full focus:outline-none focus:bg-white border-3 border-transparent focus:border-blue-400 hidden" placeholder="Add New Todo">
+
+        <ul class="" id="to-do--list">
+
+        </ul>
+
+        <p class="text-sm text-center text-gray-200 p-2" id="message">
+            Your To-do List is currently empty, Click on the plus icon above to add Todos'.
+        </p>
+
+        <span class="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash font-inherit text-white p-1">
+                <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+        </span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

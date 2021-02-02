@@ -24,7 +24,7 @@ inputTab.keypress(function (e) {
         $('ul').append(`<li><span>${$('span').html()}</span>  ${toDO}</li>`);
         $('li').attr('class', 'text-sm flex items-center h-10');
         $('li').children().attr('class', 'h-full p-2 opacity-0 bg-red-600 mr-1 w-0')
-        $('li:nth-child(even)').addClass('bg-gray-200');
+        $('li:nth-child(even)').addClass('bg-gray-200 text-gray-800');
         $('li:nth-child(odd)').addClass('text-white');
 
         if(toDO == ''){

@@ -5,14 +5,17 @@ function random(min, max){
 
 function changeBg(){
     let bodyBg = $('body').css({
-        'background' : 'linear-gradient(90deg, rgb(' + random(0, 225) + ',' + random(0, 225) + ',' + random(0, 225) + '), rgb(' + random(0, 225) + ',' + random(0, 225) + ',' + random(0, 225) + '), rgb(' + random(0, 225) + ',' + random(0, 225) + ',' + random(0, 225) + ')'
+        'background' : 'linear-gradient(to right, rgb(' + random(0, 225) + ',' + random(0, 225) + ',' + random(0, 225) + '), rgb(' + random(0, 225) + ',' + random(0, 225) + ',' + random(0, 225) + '), rgb(' + random(0, 225) + ',' + random(0, 225) + ',' + random(0, 225) + ')',
     })
     return bodyBg;
 }
 
 changeBg();
 
+let maxInfo = 'To-do list maximum input reached. Delete already done todos\' to add more';
+
 let inputTab = $('input[type=text]');
+let totalTodo = $('li').length;
 
 $('#add-to-do').click(function(){
     inputTab.fadeToggle();
@@ -21,23 +24,31 @@ inputTab.keypress(function (e) {
     if(e.which === 13){
         let toDO = inputTab.val()
         inputTab.val('')
-        $('ul').append(`<li><span>${$('span').html()}</span>  ${toDO}</li>`);
-        $('li').attr('class', 'text-sm flex items-center h-10');
-        $('li').children().attr('class', 'h-full p-2 opacity-0 bg-red-600 mr-1 w-0')
-        $('li:nth-child(even)').addClass('bg-gray-200 text-gray-800');
-        $('li:nth-child(odd)').addClass('text-white');
 
         if(toDO == ''){
-            console.log("No todos' was entered")
+            console.log("No todo was entered")
             return false;
         }
 
-        if($('li').length > 0){
+        $('ul').append(`<li><span>${$('span').html()}</span>  ${toDO}</li>`);
+        $('li').attr('class', 'text-sm flex items-center h-10');
+        $('li').children().attr('class', 'h-full p-2 opacity-0 bg-red-600 mr-1 w-0')
+        $('li:nth-child(even)').addClass('bg-gray-200');
+        $('li:nth-child(odd)').addClass('text-white');
+
+        if(totalTodo > 0){
             $('#message').fadeOut(500, function(){
                 $(this).remove();
             })
         }
+        if($('#container').height() === $('body').height()){
+            $('#container').append(`<p class="text-sm text-center text-gray-200 p-2">${maxInfo}</p>`);
+            inputTab.attr('disabled', '')
+            console.log('To-do list max reached')
+            return false;
+        }
         changeBg();
+        totalTodo++;
     }
 });
 
@@ -63,5 +74,9 @@ $('ul').on('click', 'span', function(e){
     $(this).parent().fadeOut(1000, function(){
         $(this).remove();
     })
+
+    totalTodo--;
+    $('p').remove();
+    inputTab.removeAttr('disabled', '')
     e.stopPropagation();
 })
